@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Preferita — Pizzeria Napoletana · Torino</title>
+  <meta name="description" content="Pizzeria La Preferita a Torino. Pizza napoletana autentica, pesce fresco, dolci fatti in casa. Via Carso 18, 10141 Torino." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --white: #ffffff;
+      --beige: #e8dcc8;
+      --charcoal: #1a1a1a;
+      --sand: #d4c4a8;
+      --cream: #faf8f4;
+      --near-black: #111111;
+      --warm-grey: #888077;
+      --border-radius: 12px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      color: var(--charcoal);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* PROGRESS BAR */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(to right, var(--charcoal), var(--sand));
+      z-index: 9999;
+      transition: width 0.1s linear;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: var(--white);
+      border-bottom: 2px solid var(--beige);
+      z-index: 1000;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      text-decoration: none;
+    }
+    .nav-logo-main {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+    .nav-logo-main .la { color: var(--sand); font-weight: 400; }
+    .nav-logo-main .preferita { color: var(--charcoal); font-weight: 700; }
+    .nav-logo-sub {
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      color: var(--warm-grey);
+      font-weight: 300;
+      margin-top: 2px;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.8rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--charcoal);
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--warm-grey); }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+    .lang-toggle {
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      letter-spacing: 0.05em;
+    }
+    .lang-toggle span {
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .lang-toggle span.active { font-weight: 700; }
+    .lang-toggle span:hover { opacity: 0.6; }
+    .btn-nav-order {
+      background: var(--charcoal);
+      color: var(--white);
+      border: none;
+      padding: 0.5rem 1.1rem;
+      border-radius: var(--border-radius);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 400;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-nav-order:hover { background: #333; }
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.3rem;
+      color: var(--charcoal);
+    }
+
+    /* MOBILE MENU */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px; left: 0; right: 0; bottom: 0;
+      background: var(--white);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu ul {
+      list-style: none;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .mobile-menu ul a {
+      font-size: 1.4rem;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--charcoal);
+      text-decoration: none;
+    }
+
+    /* HERO */
+    #hero {
+      height: 100vh;
+      min-height: 600px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1600&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 2rem;
+      padding-top: 80px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(4px);
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      line-height: 1.05;
+      margin-bottom: 1.2rem;
+    }
+    .hero-title .la {
+      display: block;
+      color: var(--sand);
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 400;
+    }
+    .hero-title .preferita {
+      display: block;
+      color: var(--white);
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      font-weight: 700;
+    }
+    .hero-sub {
+      font-style: italic;
+      color: rgba(255,255,255,0.85);
+      font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .hero-icons {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.85rem;
+    }
+    .hero-icons span { display: flex; align-items: center; gap: 0.5rem; }
+    .hero-icons i { color: var(--sand); }
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .btn-filled {
+      background: var(--charcoal);
+      color: var(--white);
+      border: 2px solid var(--charcoal);
+      padding: 0.8rem 1.8rem;
+      border-radius: var(--border-radius);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .btn-filled:hover { background: #333; border-color: #333; }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.7);
+      padding: 0.8rem 1.8rem;
+      border-radius: var(--border-radius);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+    .hero-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.82rem;
+    }
+    .pulse-dot {
+      width: 8px; height: 8px;
+      background: var(--beige);
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+
+    /* PILLARS */
+    #pillars {
+      background: var(--beige);
+      padding: 5rem 2rem;
+    }
+    .pillars-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .pillar-card {
+      background: var(--white);
+      border: 2px solid var(--charcoal);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+    }
+    .pillar-card i {
+      font-size: 1.6rem;
+      color: var(--charcoal);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .pillar-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .pillar-card p {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--warm-grey);
+    }
+
+    /* MENU */
+    #menu {
+      background: var(--white);
+      padding: 5rem 2rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(2rem, 5vw, 3rem);
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--charcoal);
+    }
+    .menu-tabs {
+      display: flex;
+      gap: 0.6rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+    .tab-btn {
+      background: var(--white);
+      border: 2px solid var(--beige);
+      color: var(--charcoal);
+      padding: 0.55rem 1.2rem;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: var(--charcoal);
+      color: var(--white);
+      border-color: var(--charcoal);
+    }
+    .tab-btn:hover:not(.active) { border-color: var(--charcoal); }
+    .tab-panel { display: none; max-width: 820px; margin: 0 auto; }
+    .tab-panel.active { display: block; }
+    .menu-category {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--charcoal);
+      margin-bottom: 1.2rem;
+      margin-top: 2rem;
+      border-bottom: 1px solid var(--beige);
+      padding-bottom: 0.4rem;
+    }
+    .menu-category:first-child { margin-top: 0; }
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--cream);
+    }
+    .menu-item-left { flex: 1; }
+    .menu-item-name { font-size: 0.95rem; font-weight: 400; color: var(--charcoal); }
+    .menu-item-desc {
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--warm-grey);
+      margin-top: 0.15rem;
+      line-height: 1.4;
+    }
+    .menu-item-price { font-size: 0.95rem; font-weight: 500; color: var(--charcoal); white-space: nowrap; }
+    .menu-item-noprice { font-size: 0.8rem; color: var(--warm-grey); font-style: italic; }
+    .menu-cta { text-align: center; margin-top: 3rem; }
+    .btn-dark {
+      background: var(--charcoal);
+      color: var(--white);
+      border: 2px solid var(--charcoal);
+      padding: 0.85rem 2rem;
+      border-radius: var(--border-radius);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+    .btn-dark:hover { background: #333; }
+
+    /* GALLERY */
+    #gallery {
+      background: var(--beige);
+      padding: 5rem 2rem;
+    }
+    .gallery-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--border-radius);
+      aspect-ratio: 4/3;
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      border-radius: var(--border-radius);
+      border: 2px solid transparent;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.06);
+      border-color: var(--charcoal);
+    }
+
+    /* ABOUT */
+    #about { background: var(--white); padding: 5rem 2rem; }
+    .about-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .about-img img {
+      width: 100%;
+      border-radius: var(--border-radius);
+      border: 2px solid var(--charcoal);
+      display: block;
+    }
+    .about-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin-bottom: 0.6rem;
+      color: var(--charcoal);
+    }
+    .about-tagline {
+      font-style: italic;
+      color: var(--warm-grey);
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .about-text p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #444;
+      margin-bottom: 2rem;
+    }
+    .about-stats { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .stat {
+      background: var(--cream);
+      border: 1px solid var(--beige);
+      border-radius: var(--border-radius);
+      padding: 0.6rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--charcoal);
+    }
+    .stat i { margin-right: 0.4rem; color: var(--warm-grey); }
+
+    /* REVIEWS */
+    #reviews { background: var(--cream); padding: 5rem 2rem; }
+    .reviews-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .review-card {
+      background: var(--white);
+      border: 2px solid var(--beige);
+      border-radius: var(--border-radius);
+      padding: 1.8rem;
+    }
+    .review-stars { color: var(--charcoal); font-size: 0.9rem; margin-bottom: 1rem; }
+    .review-text {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #444;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    .review-author { font-size: 0.8rem; color: var(--warm-grey); }
+
+    /* ORDER */
+    #order { background: var(--near-black); padding: 5rem 2rem; text-align: center; }
+    #order h2 {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    #order p { color: rgba(255,255,255,0.7); font-size: 1rem; margin-bottom: 2.5rem; line-height: 1.6; }
+    .btn-white {
+      background: var(--white);
+      color: var(--charcoal);
+      border: 2px solid var(--white);
+      padding: 1rem 2.5rem;
+      border-radius: var(--border-radius);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+    .btn-white:hover { background: var(--cream); border-color: var(--cream); }
+
+    /* CONTATTI */
+    #contatti { background: var(--beige); padding: 5rem 2rem; }
+    .contatti-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+    .contatti-info h2,
+    .form-col h2 {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.8rem;
+      margin-bottom: 1.8rem;
+      color: var(--charcoal);
+    }
+    .info-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.3rem;
+      align-items: flex-start;
+    }
+    .info-row i {
+      color: var(--charcoal);
+      font-size: 1rem;
+      margin-top: 0.15rem;
+      width: 20px;
+      flex-shrink: 0;
+    }
+    .info-row-content { font-size: 0.9rem; line-height: 1.7; color: var(--charcoal); }
+    .info-row-content strong { display: block; font-weight: 500; margin-bottom: 0.1rem; }
+    .map-wrap { margin-top: 1.5rem; border-radius: var(--border-radius); overflow: hidden; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 400;
+      margin-bottom: 0.35rem;
+      color: var(--charcoal);
+      letter-spacing: 0.03em;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border: 2px solid var(--sand);
+      border-radius: var(--border-radius);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      background: var(--white);
+      color: var(--charcoal);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--charcoal); }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-success {
+      display: none;
+      background: var(--white);
+      border: 2px solid var(--charcoal);
+      border-radius: var(--border-radius);
+      padding: 1.2rem;
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      margin-top: 1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--near-black);
+      padding: 2.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo .la {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--sand);
+      font-size: 1.1rem;
+      font-weight: 400;
+    }
+    .footer-logo .preferita {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--white);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .footer-logo-sub { font-size: 0.7rem; color: rgba(255,255,255,0.4); letter-spacing: 0.07em; margin-top: 3px; }
+    .footer-center { color: rgba(255,255,255,0.4); font-size: 0.78rem; text-align: center; }
+    .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem; }
+    .footer-right a {
+      color: var(--sand);
+      text-decoration: none;
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: opacity 0.2s;
+    }
+    .footer-right a:hover { opacity: 0.7; }
+
+    /* FADE UP */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { display: none; }
+      .btn-nav-order { display: none; }
+      .hamburger { display: block; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .contatti-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; align-items: center; text-align: center; }
+      .footer-right { align-items: center; }
+    }
+    @media (max-width: 480px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .menu-tabs { justify-content: flex-start; }
+      .hero-icons { gap: 1rem; font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-main"><span class="la">La </span><span class="preferita">Preferita</span></span>
+    <span class="nav-logo-sub">Pizzeria &middot; Via Carso &middot; Torino</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#menu" data-it="Men&ugrave;" data-en="Menu">Men&ugrave;</a></li>
+    <li><a href="#about" data-it="Chi siamo" data-en="About">Chi siamo</a></li>
+    <li><a href="#contatti" data-it="Contatti" data-en="Contact">Contatti</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="lang-toggle">
+      <span id="lang-it" class="active" onclick="setLang('it')">IT</span>
+      &nbsp;|&nbsp;
+      <span id="lang-en" onclick="setLang('en')">EN</span>
+    </span>
+    <a href="https://la-preferita.res-menu.net" target="_blank" rel="noopener" class="btn-nav-order" data-it="Ordina" data-en="Order">Ordina</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <i class="fas fa-bars" id="hamburger-icon"></i>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <ul>
+    <li><a href="#menu" class="mobile-link" data-it="Men&ugrave;" data-en="Menu">Men&ugrave;</a></li>
+    <li><a href="#about" class="mobile-link" data-it="Chi siamo" data-en="About">Chi siamo</a></li>
+    <li><a href="#contatti" class="mobile-link" data-it="Contatti" data-en="Contact">Contatti</a></li>
+  </ul>
+  <a href="https://la-preferita.res-menu.net" target="_blank" rel="noopener" class="btn-dark" data-it="Ordina online" data-en="Order online">Ordina online</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <i class="fas fa-star"></i> 4.7 Google &nbsp;&middot;&nbsp; Via Carso 18 &nbsp;&middot;&nbsp; Torino
+    </div>
+    <h1 class="hero-title">
+      <span class="la">La</span>
+      <span class="preferita">Preferita</span>
+    </h1>
+    <p class="hero-sub" data-it="Pizza napoletana autentica &mdash; impasto morbido, ingredienti freschi, dolci fatti in casa" data-en="Authentic Neapolitan pizza &mdash; soft dough, fresh ingredients, homemade desserts">
+      Pizza napoletana autentica &mdash; impasto morbido, ingredienti freschi, dolci fatti in casa
+    </p>
+    <div class="hero-icons">
+      <span><i class="fas fa-pizza-slice"></i> <span data-it="Pizza napoletana" data-en="Neapolitan pizza">Pizza napoletana</span></span>
+      <span><i class="fas fa-fish"></i> <span data-it="Pesce fresco" data-en="Fresh fish">Pesce fresco</span></span>
+      <span><i class="fas fa-cake-candles"></i> <span data-it="Dolci fatti in casa" data-en="Homemade desserts">Dolci fatti in casa</span></span>
+    </div>
+    <div class="hero-ctas">
+      <a href="#menu" class="btn-filled" data-it="Scopri il men&ugrave;" data-en="View our menu">Scopri il men&ugrave;</a>
+      <a href="https://la-preferita.res-menu.net" target="_blank" rel="noopener" class="btn-outline" data-it="Ordina online" data-en="Order online">Ordina online</a>
+    </div>
+    <div class="hero-status">
+      <span class="pulse-dot"></span>
+      <span data-it="Mar&ndash;Sab: 18:30&ndash;23:00 &middot; Dom anche a pranzo" data-en="Tue&ndash;Sat: 18:30&ndash;23:00 &middot; Sun also for lunch">Mar&ndash;Sab: 18:30&ndash;23:00 &middot; Dom anche a pranzo</span>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section id="pillars">
+  <div class="pillars-grid">
+    <div class="pillar-card fade-up">
+      <i class="fas fa-pizza-slice"></i>
+      <h3 data-it="Pizza napoletana" data-en="Neapolitan pizza">Pizza napoletana</h3>
+      <p data-it="Impasto morbido, cornicione soffice &mdash; la vera pizza napoletana a Torino" data-en="Soft dough, fluffy crust &mdash; real Neapolitan pizza in Turin">Impasto morbido, cornicione soffice &mdash; la vera pizza napoletana a Torino</p>
+    </div>
+    <div class="pillar-card fade-up">
+      <i class="fas fa-fish"></i>
+      <h3 data-it="Pesce fresco" data-en="Fresh fish">Pesce fresco</h3>
+      <p data-it="Pesce del giorno, fritto misto, linguine all&rsquo;astice &mdash; tutto freschissimo" data-en="Daily fish, mixed fry, lobster linguine &mdash; all perfectly fresh">Pesce del giorno, fritto misto, linguine all&rsquo;astice &mdash; tutto freschissimo</p>
+    </div>
+    <div class="pillar-card fade-up">
+      <i class="fas fa-dog"></i>
+      <h3 data-it="Cani benvenuti" data-en="Dogs welcome">Cani benvenuti</h3>
+      <p data-it="Terrazza esterna con seggioloni &mdash; tutta la famiglia &egrave; la benvenuta" data-en="Outdoor terrace with high chairs &mdash; the whole family is welcome">Terrazza esterna con seggioloni &mdash; tutta la famiglia &egrave; la benvenuta</p>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <h2 class="section-title" data-it="Il Nostro Men&ugrave;" data-en="Our Menu">Il Nostro Men&ugrave;</h2>
+  <div class="menu-tabs">
+    <button class="tab-btn active" onclick="showTab('classiche',this)" data-it="Pizze Classiche" data-en="Classic Pizzas">Pizze Classiche</button>
+    <button class="tab-btn" onclick="showTab('speciali',this)" data-it="Pizze Speciali" data-en="Special Pizzas">Pizze Speciali</button>
+    <button class="tab-btn" onclick="showTab('calzoni',this)" data-it="Calzoni &amp; Fritti" data-en="Calzoni &amp; Fried">Calzoni &amp; Fritti</button>
+    <button class="tab-btn" onclick="showTab('antipasti',this)" data-it="Antipasti" data-en="Starters">Antipasti</button>
+    <button class="tab-btn" onclick="showTab('dolci',this)" data-it="Dolci" data-en="Desserts">Dolci</button>
+  </div>
+
+  <!-- PIZZE CLASSICHE -->
+  <div class="tab-panel active" id="tab-classiche">
+    <p class="menu-category" data-it="Pizze Classiche" data-en="Classic Pizzas">Pizze Classiche</p>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Margherita</div><div class="menu-item-desc" data-it="pomodoro, mozzarella, basilico" data-en="tomato, mozzarella, basil">pomodoro, mozzarella, basilico</div></div><div class="menu-item-price">€6.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Marinara</div><div class="menu-item-desc" data-it="pomodoro, aglio, origano" data-en="tomato, garlic, oregano">pomodoro, aglio, origano</div></div><div class="menu-item-price">€6.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Greca</div><div class="menu-item-desc" data-it="pomodoro, mozzarella, olive denocciolate" data-en="tomato, mozzarella, pitted olives">pomodoro, mozzarella, olive denocciolate</div></div><div class="menu-item-price">€7.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Napoletana</div><div class="menu-item-desc" data-it="pomodoro, mozzarella, acciughe, capperi" data-en="tomato, mozzarella, anchovies, capers">pomodoro, mozzarella, acciughe, capperi</div></div><div class="menu-item-price">€7.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cipolla</div><div class="menu-item-desc" data-it="pomodoro, mozzarella, cipolla di tropea" data-en="tomato, mozzarella, Tropea onion">pomodoro, mozzarella, cipolla di tropea</div></div><div class="menu-item-price">€7.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Wurstel</div><div class="menu-item-desc" data-it="pomodoro, mozzarella, wurstel" data-en="tomato, mozzarella, sausage">pomodoro, mozzarella, wurstel</div></div><div class="menu-item-price">€7.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Patatina</div><div class="menu-item-desc" data-it="pomodoro, mozzarella, patatine fritte" data-en="tomato, mozzarella, fries">pomodoro, mozzarella, patatine fritte</div></div><div class="menu-item-price">€7.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Prosciutto</div><div class="menu-item-desc" data-it="pomodoro, mozzarella, prosciutto cotto" data-en="tomato, mozzarella, cooked ham">pomodoro, mozzarella, prosciutto cotto</div></div><div class="menu-item-price">€7.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Funghi</div><div class="menu-item-desc" data-it="pomodoro, mozzarella, funghi champignon" data-en="tomato, mozzarella, mushrooms">pomodoro, mozzarella, funghi champignon</div></div><div class="menu-item-price">€7.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Disperata</div><div class="menu-item-desc" data-it="pomodoro, mozzarella, salamino piccante" data-en="tomato, mozzarella, spicy salami">pomodoro, mozzarella, salamino piccante</div></div><div class="menu-item-price">€8.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Salsiccia</div><div class="menu-item-desc" data-it="pomodoro, mozzarella, salsiccia" data-en="tomato, mozzarella, sausage">pomodoro, mozzarella, salsiccia</div></div><div class="menu-item-price">€8.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Prosciutto e Funghi</div></div><div class="menu-item-price">€8.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Tonno</div></div><div class="menu-item-price">€8.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Parmigiana</div><div class="menu-item-desc" data-it="pomodoro, mozzarella, melanzane fritte, scaglie di grana, basilico" data-en="tomato, mozzarella, fried aubergines, grana flakes, basil">pomodoro, mozzarella, melanzane fritte, scaglie di grana, basilico</div></div><div class="menu-item-price">€9.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Quattro Stagioni</div></div><div class="menu-item-price">€9.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Americana</div></div><div class="menu-item-price">€9.00</div></div>
+  </div>
+
+  <!-- PIZZE SPECIALI -->
+  <div class="tab-panel" id="tab-speciali">
+    <p class="menu-category" data-it="Pizze Speciali" data-en="Special Pizzas">Pizze Speciali</p>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Marsigliese</div><div class="menu-item-desc" data-it="pomodoro, mozzarella, gorgonzola, cipolle tropea" data-en="tomato, mozzarella, gorgonzola, Tropea onions">pomodoro, mozzarella, gorgonzola, cipolle tropea</div></div><div class="menu-item-price">€10.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">4 Formaggi</div></div><div class="menu-item-price">€10.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Campagnola</div></div><div class="menu-item-price">€10.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Vegetariana</div><div class="menu-item-desc" data-it="melanzane, peperoni, zucchine, friarielli" data-en="aubergines, peppers, courgettes, friarielli">melanzane, peperoni, zucchine, friarielli</div></div><div class="menu-item-price">€10.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Vomero</div><div class="menu-item-desc" data-it="mozzarella, salsiccia fresca, friarielli" data-en="mozzarella, fresh sausage, friarielli">mozzarella, salsiccia fresca, friarielli</div></div><div class="menu-item-price">€10.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Tonno e Cipolla</div></div><div class="menu-item-price">€10.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Tre Regioni</div></div><div class="menu-item-price">€11.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Speck e Brie</div></div><div class="menu-item-price">€10.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Siciliana</div></div><div class="menu-item-price">€11.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Pizzona</div><div class="menu-item-desc" data-it="pomodoro, mozzarella di bufala campana" data-en="tomato, bufala mozzarella from Campania">pomodoro, mozzarella di bufala campana</div></div><div class="menu-item-price">€11.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Gorgo e Pere</div><div class="menu-item-desc" data-it="mozzarella, gorgonzola, pere, noci" data-en="mozzarella, gorgonzola, pears, walnuts">mozzarella, gorgonzola, pere, noci</div></div><div class="menu-item-price">€11.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Carso</div><div class="menu-item-desc" data-it="pomodoro, crudo di parma, burrata intera" data-en="tomato, Parma ham, whole burrata">pomodoro, crudo di parma, burrata intera</div></div><div class="menu-item-price">€12.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Don Vincenzo</div><div class="menu-item-desc" data-it="bufala, cornicione ripieno di ricotta, pistacchio" data-en="bufala, ricotta-stuffed crust, pistachio">bufala, cornicione ripieno di ricotta, pistacchio</div></div><div class="menu-item-price">€12.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Norvegese</div><div class="menu-item-desc" data-it="bufala, provola affumicata, salmone, rucola" data-en="bufala, smoked provola, salmon, rocket">bufala, provola affumicata, salmone, rucola</div></div><div class="menu-item-price">€12.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Don Mirko</div><div class="menu-item-desc" data-it="bufala, salsiccia, peperoni, fiocchi di ricotta" data-en="bufala, sausage, peppers, ricotta flakes">bufala, salsiccia, peperoni, fiocchi di ricotta</div></div><div class="menu-item-price">€12.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Capricciosa</div></div><div class="menu-item-price">€12.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Mortazza</div><div class="menu-item-desc" data-it="bufala, mortadella, stracciatella, pistacchio" data-en="bufala, mortadella, stracciatella, pistachio">bufala, mortadella, stracciatella, pistacchio</div></div><div class="menu-item-price">€12.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Calabra</div><div class="menu-item-desc" data-it="mozzarella, n'duja, pomodori secchi, provola" data-en="mozzarella, n'duja, sun-dried tomatoes, provola">mozzarella, n'duja, pomodori secchi, provola</div></div><div class="menu-item-price">€12.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Ai Gamberetti</div><div class="menu-item-desc" data-it="mozzarella, caciotta, zucchine, gamberetti" data-en="mozzarella, caciotta, courgettes, shrimps">mozzarella, caciotta, zucchine, gamberetti</div></div><div class="menu-item-price">€12.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Picasso</div><div class="menu-item-desc" data-it="gamberetti, vongole, cozze, calamari, gamberoni" data-en="shrimps, clams, mussels, squid, prawns">gamberetti, vongole, cozze, calamari, gamberoni</div></div><div class="menu-item-price">€14.00</div></div>
+  </div>
+
+  <!-- CALZONI & FRITTI -->
+  <div class="tab-panel" id="tab-calzoni">
+    <p class="menu-category" data-it="Calzoni &amp; Fritti" data-en="Calzoni &amp; Fried">Calzoni &amp; Fritti</p>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">&frac12; Chiacchiera</div></div><div class="menu-item-price">€9.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Chiacchera</div></div><div class="menu-item-price">€18.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Bombolone Fritto</div><div class="menu-item-desc" data-it="pachino, crudo di parma, rucola, stracciatella" data-en="cherry tomato, Parma ham, rocket, stracciatella">pachino, crudo di parma, rucola, stracciatella</div></div><div class="menu-item-price">€9.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Pizzelle Napoletane (3 pz)</div></div><div class="menu-item-price">€6.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Pizzelle Campane (3 pz)</div></div><div class="menu-item-price">€9.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Pizzelle di Bronte (3 pz)</div><div class="menu-item-desc" data-it="mortadella, stracciatella, pistacchio" data-en="mortadella, stracciatella, pistachio">mortadella, stracciatella, pistacchio</div></div><div class="menu-item-price">€9.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Zizzona di Bufala 500g</div></div><div class="menu-item-price">€25.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Zizzona di Bufala 1kg</div></div><div class="menu-item-price">€50.00</div></div>
+    <p class="menu-category" data-it="Farinata" data-en="Farinata">Farinata</p>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Farinata Classica</div></div><div class="menu-item-price">€5.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Farinate Farcite</div><div class="menu-item-desc" data-it="gorgonzola e noci / salsiccia e cipolla / lardo" data-en="gorgonzola &amp; walnuts / sausage &amp; onion / lard">gorgonzola e noci / salsiccia e cipolla / lardo</div></div><div class="menu-item-price">€8.00</div></div>
+    <p class="menu-category" data-it="Focacce" data-en="Focaccia">Focacce</p>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Focaccia Primavera</div><div class="menu-item-desc" data-it="rucola, stracciatella, crudo, pachino" data-en="rocket, stracciatella, ham, cherry tomato">rucola, stracciatella, crudo, pachino</div></div><div class="menu-item-price">€12.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Focaccia Muncal&egrave;</div><div class="menu-item-desc" data-it="lardo di moncalieri, pepe" data-en="Moncalieri lard, pepper">lardo di moncalieri, pepe</div></div><div class="menu-item-price">€8.00</div></div>
+  </div>
+
+  <!-- ANTIPASTI -->
+  <div class="tab-panel" id="tab-antipasti">
+    <p class="menu-category" data-it="Antipasti" data-en="Starters">Antipasti</p>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cozze Marinara</div></div><div class="menu-item-price">€11.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cozze Tarantina</div></div><div class="menu-item-price">€12.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Insalata di Polipo alla Ligure</div></div><div class="menu-item-price">€15.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Tagliere La Preferita</div></div><div class="menu-item-price">€15.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Patatine Fritte</div></div><div class="menu-item-price">€3.00</div></div>
+    <p class="menu-category" data-it="Piatti Vari" data-en="Main Dishes">Piatti Vari</p>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Manzo Affumicato con Rucola</div></div><div class="menu-item-price menu-item-noprice" data-it="chiedi al cameriere" data-en="ask your waiter">chiedi al cameriere</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Calamarata / Pasta e Fagioli</div></div><div class="menu-item-price menu-item-noprice" data-it="chiedi al cameriere" data-en="ask your waiter">chiedi al cameriere</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Linguine all&rsquo;Astice</div></div><div class="menu-item-price menu-item-noprice" data-it="chiedi al cameriere" data-en="ask your waiter">chiedi al cameriere</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Paccheri Melanzane e Spada</div></div><div class="menu-item-price menu-item-noprice" data-it="chiedi al cameriere" data-en="ask your waiter">chiedi al cameriere</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Penne Speck e Brie</div></div><div class="menu-item-price menu-item-noprice" data-it="chiedi al cameriere" data-en="ask your waiter">chiedi al cameriere</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Melanzane alla Parmigiana</div></div><div class="menu-item-price menu-item-noprice" data-it="chiedi al cameriere" data-en="ask your waiter">chiedi al cameriere</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Spada alla Livornese</div></div><div class="menu-item-price menu-item-noprice" data-it="chiedi al cameriere" data-en="ask your waiter">chiedi al cameriere</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Tonno alla Messinese</div></div><div class="menu-item-price menu-item-noprice" data-it="chiedi al cameriere" data-en="ask your waiter">chiedi al cameriere</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Fritto Misto</div></div><div class="menu-item-price menu-item-noprice" data-it="chiedi al cameriere" data-en="ask your waiter">chiedi al cameriere</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Filetto di Orata alla Ligure</div></div><div class="menu-item-price menu-item-noprice" data-it="chiedi al cameriere" data-en="ask your waiter">chiedi al cameriere</div></div>
+  </div>
+
+  <!-- DOLCI -->
+  <div class="tab-panel" id="tab-dolci">
+    <p class="menu-category" data-it="Dolci" data-en="Desserts">Dolci</p>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Bunet</div></div><div class="menu-item-price">€5.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Panna Cotta</div></div><div class="menu-item-price">€5.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Sorbetto</div></div><div class="menu-item-price">€5.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Tiramiş&ugrave;</div></div><div class="menu-item-price">€5.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Pastiera Napoletana</div></div><div class="menu-item-price">€5.00</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Profitterol</div></div><div class="menu-item-price">€5.00</div></div>
+  </div>
+
+  <div class="menu-cta">
+    <a href="https://la-preferita.res-menu.net" target="_blank" rel="noopener" class="btn-dark" data-it="Ordina online &rarr;" data-en="Order online &rarr;">Ordina online &rarr;</a>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <h2 class="section-title" data-it="Le Nostre Pizze" data-en="Our Pizzas">Le Nostre Pizze</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item fade-up">
+      <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&auto=format&fit=crop" alt="Pizza napoletana" loading="lazy" />
+    </div>
+    <div class="gallery-item fade-up">
+      <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&auto=format&fit=crop" alt="Pizza artigianale" loading="lazy" />
+    </div>
+    <div class="gallery-item fade-up">
+      <img src="https://images.unsplash.com/photo-1548940740-204726a19be3?w=800&auto=format&fit=crop" alt="Pizza margherita" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-img fade-up">
+      <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&auto=format&fit=crop" alt="La Preferita Torino" loading="lazy" />
+    </div>
+    <div class="about-text fade-up">
+      <h2 data-it="La preferita di tutti." data-en="Everyone&rsquo;s favourite.">La preferita di tutti.</h2>
+      <p class="about-tagline" data-it="Pizza napoletana, pesce fresco, dolci fatti in casa &mdash; dal cuore." data-en="Neapolitan pizza, fresh fish, homemade desserts &mdash; from the heart.">Pizza napoletana, pesce fresco, dolci fatti in casa &mdash; dal cuore.</p>
+      <p data-it="Pizzeria La Preferita &egrave; la pizzeria di quartiere che tutti vorrebbero avere. Pizza morbida con ingredienti freschi e generosi, pesce selezionato ogni giorno, dolci preparati in casa. Terrazza esterna, seggioloni disponibili e cani benvenuti &mdash; perch&eacute; anche i tuoi amici a quattro zampe meritano una serata speciale." data-en="Pizzeria La Preferita is the neighbourhood pizzeria everyone wishes they had. Soft pizza with fresh and generous ingredients, daily selected fish, homemade desserts. Outdoor terrace, high chairs available and dogs welcome &mdash; because even your four-legged friends deserve a special evening.">Pizzeria La Preferita &egrave; la pizzeria di quartiere che tutti vorrebbero avere. Pizza morbida con ingredienti freschi e generosi, pesce selezionato ogni giorno, dolci preparati in casa. Terrazza esterna, seggioloni disponibili e cani benvenuti &mdash; perch&eacute; anche i tuoi amici a quattro zampe meritano una serata speciale.</p>
+      <div class="about-stats">
+        <span class="stat"><i class="fas fa-star"></i> 4.7 Google</span>
+        <span class="stat"><i class="fas fa-star"></i> 4.6 Restaurant Guru</span>
+        <span class="stat"><i class="fas fa-location-dot"></i> Via Carso 18</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <h2 class="section-title" data-it="Cosa dicono i nostri ospiti" data-en="What our guests say">Cosa dicono i nostri ospiti</h2>
+  <div class="reviews-grid">
+    <div class="review-card fade-up">
+      <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+      <p class="review-text" data-it="&ldquo;Ottima pizza! Pasta morbida e ingredienti freschi. Vado spesso, personale gentile e simpatico &mdash; tutto buono e fresco.&rdquo;" data-en="&ldquo;Great pizza! Soft dough and fresh ingredients. I go often, the staff are kind and friendly &mdash; everything is good and fresh.&rdquo;">&ldquo;Ottima pizza! Pasta morbida e ingredienti freschi. Vado spesso, personale gentile e simpatico &mdash; tutto buono e fresco.&rdquo;</p>
+      <div class="review-author">— Sluurpy</div>
+    </div>
+    <div class="review-card fade-up">
+      <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+      <p class="review-text" data-it="&ldquo;Siamo stati gi&agrave; due volte. Servizio rapido, camerieri cordiali, cibo veramente ottimo. Torneremo ancora!&rdquo;" data-en="&ldquo;We&rsquo;ve been twice already. Fast service, friendly waiters, truly excellent food. We&rsquo;ll be back!&rdquo;">&ldquo;Siamo stati gi&agrave; due volte. Servizio rapido, camerieri cordiali, cibo veramente ottimo. Torneremo ancora!&rdquo;</p>
+      <div class="review-author">— Sluurpy</div>
+    </div>
+    <div class="review-card fade-up">
+      <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+      <p class="review-text" data-it="&ldquo;Una buona pizza e un buon ristorante. Consigliato!&rdquo;" data-en="&ldquo;A great pizza and a great restaurant. Highly recommended!&rdquo;">&ldquo;Una buona pizza e un buon ristorante. Consigliato!&rdquo;</p>
+      <div class="review-author">— Foursquare</div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER ONLINE -->
+<section id="order">
+  <h2 data-it="Ordina Online" data-en="Order Online">Ordina Online</h2>
+  <p data-it="Prenota il tuo tavolo o ordina direttamente dal nostro sito." data-en="Book your table or order directly from our website.">Prenota il tuo tavolo o ordina direttamente dal nostro sito.</p>
+  <a href="https://la-preferita.res-menu.net" target="_blank" rel="noopener" class="btn-white" data-it="Vai al men&ugrave; online &rarr;" data-en="Go to online menu &rarr;">Vai al men&ugrave; online &rarr;</a>
+</section>
+
+<!-- CONTATTI & ORARI -->
+<section id="contatti">
+  <div class="contatti-inner">
+    <div class="contatti-info fade-up">
+      <h2 data-it="Dove siamo" data-en="Find us">Dove siamo</h2>
+      <div class="info-row">
+        <i class="fas fa-location-dot"></i>
+        <div class="info-row-content"><strong>Via Carso 18, 10141 Torino</strong></div>
+      </div>
+      <div class="info-row">
+        <i class="fas fa-phone"></i>
+        <div class="info-row-content"><a href="tel:+390116276708" style="color:inherit;text-decoration:none;">+39 011 627 6708</a></div>
+      </div>
+      <div class="info-row">
+        <i class="fas fa-clock"></i>
+        <div class="info-row-content">
+          <strong data-it="Orari" data-en="Hours">Orari</strong>
+          <span class="hours-text" data-it="Luned&igrave;: Chiuso<br>Marted&igrave;&ndash;Sabato: 18:30&ndash;23:00<br>Domenica: 12:30&ndash;15:00 &amp; 18:30&ndash;23:00" data-en="Monday: Closed<br>Tuesday&ndash;Saturday: 18:30&ndash;23:00<br>Sunday: 12:30&ndash;15:00 &amp; 18:30&ndash;23:00">Luned&igrave;: Chiuso<br>Marted&igrave;&ndash;Sabato: 18:30&ndash;23:00<br>Domenica: 12:30&ndash;15:00 &amp; 18:30&ndash;23:00</span>
+        </div>
+      </div>
+      <div class="info-row">
+        <i class="fas fa-dog"></i>
+        <div class="info-row-content" data-it="Cani benvenuti &middot; Seggioloni disponibili" data-en="Dogs welcome &middot; High chairs available">Cani benvenuti &middot; Seggioloni disponibili</div>
+      </div>
+      <div class="info-row">
+        <i class="fas fa-umbrella-beach"></i>
+        <div class="info-row-content" data-it="Terrazza esterna disponibile" data-en="Outdoor terrace available">Terrazza esterna disponibile</div>
+      </div>
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps?q=Via+Carso+18,+10141+Torino&output=embed"
+          width="100%" height="300"
+          style="border:0;border-radius:12px;display:block;"
+          allowfullscreen
+          loading="lazy"
+          title="La Preferita - Via Carso 18 Torino">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="form-col fade-up">
+      <h2 data-it="Prenota un tavolo" data-en="Reserve a table">Prenota un tavolo</h2>
+      <form id="booking-form" onsubmit="handleBooking(event)">
+        <div class="form-group">
+          <label data-it="Nome" data-en="Name">Nome</label>
+          <input type="text" required />
+        </div>
+        <div class="form-group">
+          <label data-it="Email" data-en="Email">Email</label>
+          <input type="email" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label data-it="Data" data-en="Date">Data</label>
+            <input type="date" required />
+          </div>
+          <div class="form-group">
+            <label data-it="Ora" data-en="Time">Ora</label>
+            <input type="time" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label data-it="N&deg; persone" data-en="Guests">N&deg; persone</label>
+          <select>
+            <option>1</option><option>2</option><option>3</option>
+            <option selected>4</option><option>5</option><option>6</option>
+            <option>7</option><option>8+</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-it="Note" data-en="Notes">Note</label>
+          <textarea></textarea>
+        </div>
+        <button type="submit" class="btn-dark" style="width:100%;" data-it="Prenota &rarr;" data-en="Reserve &rarr;">Prenota &rarr;</button>
+      </form>
+      <div class="form-success" id="form-success">
+        <i class="fas fa-check" style="margin-right:0.5rem;"></i>
+        <span id="form-success-msg">Grazie! Ti risponderemo al pi&ugrave; presto.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div><span class="la">La </span><span class="preferita">Preferita</span></div>
+    <div class="footer-logo-sub">Pizzeria &middot; Via Carso 18 &middot; Torino</div>
+  </div>
+  <div class="footer-center">&copy; 2026 &middot; La Preferita &middot; Torino</div>
+  <div class="footer-right">
+    <a href="https://facebook.com/p/LA-PREFERITA-TORINO-100069970756672" target="_blank" rel="noopener">
+      <i class="fab fa-facebook"></i> Facebook
+    </a>
+    <a href="https://la-preferita.res-menu.net" target="_blank" rel="noopener">
+      <i class="fas fa-globe"></i> <span data-it="Ordina online" data-en="Order online">Ordina online</span>
+    </a>
+  </div>
+</footer>
+
+<script>
+  /* PROGRESS BAR */
+  window.addEventListener('scroll', () => {
+    const bar = document.getElementById('progress-bar');
+    const total = document.body.scrollHeight - window.innerHeight;
+    bar.style.width = (window.scrollY / total * 100) + '%';
+  });
+
+  /* HAMBURGER */
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const hamburgerIcon = document.getElementById('hamburger-icon');
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburgerIcon.className = open ? 'fas fa-xmark' : 'fas fa-bars';
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburgerIcon.className = 'fas fa-bars';
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* TABS */
+  function showTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  /* LANGUAGE */
+  let currentLang = 'it';
+  function setLang(lang) {
+    currentLang = lang;
+    document.getElementById('lang-it').classList.toggle('active', lang === 'it');
+    document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+    document.querySelectorAll('[data-it]').forEach(el => {
+      const val = el.getAttribute('data-' + lang);
+      if (val === null) return;
+      if (el.classList.contains('hours-text')) {
+        el.innerHTML = val;
+      } else {
+        el.innerHTML = val;
+      }
+    });
+  }
+
+  /* BOOKING FORM */
+  function handleBooking(e) {
+    e.preventDefault();
+    document.getElementById('booking-form').style.display = 'none';
+    const success = document.getElementById('form-success');
+    success.style.display = 'block';
+    document.getElementById('form-success-msg').textContent = currentLang === 'en'
+      ? "Thank you! We'll get back to you soon."
+      : "Grazie! Ti risponderemo al più presto.";
+  }
+
+  /* FADE UP */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
