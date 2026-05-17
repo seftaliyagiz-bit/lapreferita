@@ -656,6 +656,33 @@
     }
     .footer-right a:hover { opacity: 0.7; }
 
+    /* TWEMOJI */
+    .twemoji {
+      width: 36px;
+      height: 36px;
+      vertical-align: middle;
+      display: inline-block;
+    }
+    .info-row .twemoji {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .stat .twemoji {
+      width: 16px;
+      height: 16px;
+      margin-right: 0.4rem;
+    }
+    .review-stars .twemoji {
+      width: 18px;
+      height: 18px;
+    }
+    .hero-badge .twemoji {
+      width: 14px;
+      height: 14px;
+    }
+
     /* FADE UP */
     .fade-up {
       opacity: 0;
@@ -730,7 +757,7 @@
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-badge">
-      <i class="fas fa-star"></i> 4.7 Google &nbsp;&middot;&nbsp; Via Carso 18 &nbsp;&middot;&nbsp; Torino
+      <img class="twemoji hero-badge-star" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2b50.svg" alt="" style="width:14px;height:14px;"> 4.7 Google &nbsp;&middot;&nbsp; Via Carso 18 &nbsp;&middot;&nbsp; Torino
     </div>
     <h1 class="hero-title">
       <span class="la">La</span>
@@ -740,9 +767,9 @@
       Pizza napoletana autentica &mdash; impasto morbido, ingredienti freschi, dolci fatti in casa
     </p>
     <div class="hero-icons">
-      <span><i class="fas fa-pizza-slice"></i> <span data-it="Pizza napoletana" data-en="Neapolitan pizza">Pizza napoletana</span></span>
-      <span><i class="fas fa-fish"></i> <span data-it="Pesce fresco" data-en="Fresh fish">Pesce fresco</span></span>
-      <span><i class="fas fa-cake-candles"></i> <span data-it="Dolci fatti in casa" data-en="Homemade desserts">Dolci fatti in casa</span></span>
+      <span><img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f355.svg" alt=""> <span data-it="Pizza napoletana" data-en="Neapolitan pizza">Pizza napoletana</span></span>
+      <span><img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f41f.svg" alt=""> <span data-it="Pesce fresco" data-en="Fresh fish">Pesce fresco</span></span>
+      <span><img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f370.svg" alt=""> <span data-it="Dolci fatti in casa" data-en="Homemade desserts">Dolci fatti in casa</span></span>
     </div>
     <div class="hero-ctas">
       <a href="#menu" class="btn-filled" data-it="Scopri il men&ugrave;" data-en="View our menu">Scopri il men&ugrave;</a>
@@ -759,17 +786,17 @@
 <section id="pillars">
   <div class="pillars-grid">
     <div class="pillar-card fade-up">
-      <i class="fas fa-pizza-slice"></i>
+      <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f355.svg" width="40" height="40" alt="pizza" style="display:block;margin-bottom:1rem;">
       <h3 data-it="Pizza napoletana" data-en="Neapolitan pizza">Pizza napoletana</h3>
       <p data-it="Impasto morbido, cornicione soffice &mdash; la vera pizza napoletana a Torino" data-en="Soft dough, fluffy crust &mdash; real Neapolitan pizza in Turin">Impasto morbido, cornicione soffice &mdash; la vera pizza napoletana a Torino</p>
     </div>
     <div class="pillar-card fade-up">
-      <i class="fas fa-fish"></i>
+      <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f41f.svg" width="40" height="40" alt="pesce" style="display:block;margin-bottom:1rem;">
       <h3 data-it="Pesce fresco" data-en="Fresh fish">Pesce fresco</h3>
       <p data-it="Pesce del giorno, fritto misto, linguine all&rsquo;astice &mdash; tutto freschissimo" data-en="Daily fish, mixed fry, lobster linguine &mdash; all perfectly fresh">Pesce del giorno, fritto misto, linguine all&rsquo;astice &mdash; tutto freschissimo</p>
     </div>
     <div class="pillar-card fade-up">
-      <i class="fas fa-dog"></i>
+      <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f415.svg" width="40" height="40" alt="cane" style="display:block;margin-bottom:1rem;">
       <h3 data-it="Cani benvenuti" data-en="Dogs welcome">Cani benvenuti</h3>
       <p data-it="Terrazza esterna con seggioloni &mdash; tutta la famiglia &egrave; la benvenuta" data-en="Outdoor terrace with high chairs &mdash; the whole family is welcome">Terrazza esterna con seggioloni &mdash; tutta la famiglia &egrave; la benvenuta</p>
     </div>
@@ -916,9 +943,9 @@
       <p class="about-tagline" data-it="Pizza napoletana, pesce fresco, dolci fatti in casa &mdash; dal cuore." data-en="Neapolitan pizza, fresh fish, homemade desserts &mdash; from the heart.">Pizza napoletana, pesce fresco, dolci fatti in casa &mdash; dal cuore.</p>
       <p data-it="Pizzeria La Preferita &egrave; la pizzeria di quartiere che tutti vorrebbero avere. Pizza morbida con ingredienti freschi e generosi, pesce selezionato ogni giorno, dolci preparati in casa. Terrazza esterna, seggioloni disponibili e cani benvenuti &mdash; perch&eacute; anche i tuoi amici a quattro zampe meritano una serata speciale." data-en="Pizzeria La Preferita is the neighbourhood pizzeria everyone wishes they had. Soft pizza with fresh and generous ingredients, daily selected fish, homemade desserts. Outdoor terrace, high chairs available and dogs welcome &mdash; because even your four-legged friends deserve a special evening.">Pizzeria La Preferita &egrave; la pizzeria di quartiere che tutti vorrebbero avere. Pizza morbida con ingredienti freschi e generosi, pesce selezionato ogni giorno, dolci preparati in casa. Terrazza esterna, seggioloni disponibili e cani benvenuti &mdash; perch&eacute; anche i tuoi amici a quattro zampe meritano una serata speciale.</p>
       <div class="about-stats">
-        <span class="stat"><i class="fas fa-star"></i> 4.7 Google</span>
-        <span class="stat"><i class="fas fa-star"></i> 4.6 Restaurant Guru</span>
-        <span class="stat"><i class="fas fa-location-dot"></i> Via Carso 18</span>
+        <span class="stat"><img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2b50.svg" alt=""> 4.7 Google</span>
+        <span class="stat"><img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2b50.svg" alt=""> 4.6 Restaurant Guru</span>
+        <span class="stat"><img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f4cd.svg" alt=""> Via Carso 18</span>
       </div>
     </div>
   </div>
@@ -929,17 +956,17 @@
   <h2 class="section-title" data-it="Cosa dicono i nostri ospiti" data-en="What our guests say">Cosa dicono i nostri ospiti</h2>
   <div class="reviews-grid">
     <div class="review-card fade-up">
-      <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+      <div class="review-stars"><img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2b50.svg" alt=""><img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2b50.svg" alt=""><img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2b50.svg" alt=""><img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2b50.svg" alt=""><img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2b50.svg" alt=""></div>
       <p class="review-text" data-it="&ldquo;Ottima pizza! Pasta morbida e ingredienti freschi. Vado spesso, personale gentile e simpatico &mdash; tutto buono e fresco.&rdquo;" data-en="&ldquo;Great pizza! Soft dough and fresh ingredients. I go often, the staff are kind and friendly &mdash; everything is good and fresh.&rdquo;">&ldquo;Ottima pizza! Pasta morbida e ingredienti freschi. Vado spesso, personale gentile e simpatico &mdash; tutto buono e fresco.&rdquo;</p>
       <div class="review-author">— Sluurpy</div>
     </div>
     <div class="review-card fade-up">
-      <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+      <div class="review-stars"><img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2b50.svg" alt=""><img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2b50.svg" alt=""><img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2b50.svg" alt=""><img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2b50.svg" alt=""><img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2b50.svg" alt=""></div>
       <p class="review-text" data-it="&ldquo;Siamo stati gi&agrave; due volte. Servizio rapido, camerieri cordiali, cibo veramente ottimo. Torneremo ancora!&rdquo;" data-en="&ldquo;We&rsquo;ve been twice already. Fast service, friendly waiters, truly excellent food. We&rsquo;ll be back!&rdquo;">&ldquo;Siamo stati gi&agrave; due volte. Servizio rapido, camerieri cordiali, cibo veramente ottimo. Torneremo ancora!&rdquo;</p>
       <div class="review-author">— Sluurpy</div>
     </div>
     <div class="review-card fade-up">
-      <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+      <div class="review-stars"><img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2b50.svg" alt=""><img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2b50.svg" alt=""><img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2b50.svg" alt=""><img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2b50.svg" alt=""><img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2b50.svg" alt=""></div>
       <p class="review-text" data-it="&ldquo;Una buona pizza e un buon ristorante. Consigliato!&rdquo;" data-en="&ldquo;A great pizza and a great restaurant. Highly recommended!&rdquo;">&ldquo;Una buona pizza e un buon ristorante. Consigliato!&rdquo;</p>
       <div class="review-author">— Foursquare</div>
     </div>
@@ -959,26 +986,26 @@
     <div class="contatti-info fade-up">
       <h2 data-it="Dove siamo" data-en="Find us">Dove siamo</h2>
       <div class="info-row">
-        <i class="fas fa-location-dot"></i>
+        <img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f4cd.svg" alt="">
         <div class="info-row-content"><strong>Via Carso 18, 10141 Torino</strong></div>
       </div>
       <div class="info-row">
-        <i class="fas fa-phone"></i>
+        <img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f4de.svg" alt="">
         <div class="info-row-content"><a href="tel:+390116276708" style="color:inherit;text-decoration:none;">+39 011 627 6708</a></div>
       </div>
       <div class="info-row">
-        <i class="fas fa-clock"></i>
+        <img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f550.svg" alt="">
         <div class="info-row-content">
           <strong data-it="Orari" data-en="Hours">Orari</strong>
           <span class="hours-text" data-it="Luned&igrave;: Chiuso<br>Marted&igrave;&ndash;Sabato: 18:30&ndash;23:00<br>Domenica: 12:30&ndash;15:00 &amp; 18:30&ndash;23:00" data-en="Monday: Closed<br>Tuesday&ndash;Saturday: 18:30&ndash;23:00<br>Sunday: 12:30&ndash;15:00 &amp; 18:30&ndash;23:00">Luned&igrave;: Chiuso<br>Marted&igrave;&ndash;Sabato: 18:30&ndash;23:00<br>Domenica: 12:30&ndash;15:00 &amp; 18:30&ndash;23:00</span>
         </div>
       </div>
       <div class="info-row">
-        <i class="fas fa-dog"></i>
+        <img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f415.svg" alt="">
         <div class="info-row-content" data-it="Cani benvenuti &middot; Seggioloni disponibili" data-en="Dogs welcome &middot; High chairs available">Cani benvenuti &middot; Seggioloni disponibili</div>
       </div>
       <div class="info-row">
-        <i class="fas fa-umbrella-beach"></i>
+        <img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f3d6.svg" alt="">
         <div class="info-row-content" data-it="Terrazza esterna disponibile" data-en="Outdoor terrace available">Terrazza esterna disponibile</div>
       </div>
       <div class="map-wrap">
@@ -1029,7 +1056,7 @@
         <button type="submit" class="btn-dark" style="width:100%;" data-it="Prenota &rarr;" data-en="Reserve &rarr;">Prenota &rarr;</button>
       </form>
       <div class="form-success" id="form-success">
-        <i class="fas fa-check" style="margin-right:0.5rem;"></i>
+        <img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2705.svg" alt="" style="width:20px;height:20px;margin-right:0.5rem;">
         <span id="form-success-msg">Grazie! Ti risponderemo al pi&ugrave; presto.</span>
       </div>
     </div>
@@ -1048,7 +1075,7 @@
       <i class="fab fa-facebook"></i> Facebook
     </a>
     <a href="https://la-preferita.res-menu.net" target="_blank" rel="noopener">
-      <i class="fas fa-globe"></i> <span data-it="Ordina online" data-en="Order online">Ordina online</span>
+      <img class="twemoji" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f310.svg" alt="" style="width:16px;height:16px;"> <span data-it="Ordina online" data-en="Order online">Ordina online</span>
     </a>
   </div>
 </footer>
